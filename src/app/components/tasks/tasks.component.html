@@ -1,0 +1,62 @@
+<div class="row my-4">
+    <div class="col-md-6">
+        <h2>List Tasks</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <button class="btn btn-dark btn-sm" (click)="showForm = !showForm">
+          <i class="fa fa-plus"></i>New Task
+        </button>
+    </div>
+</div>
+
+<div class="row" *ngIf="showForm">
+    <div class="col-md-6 mx-auto">
+        <div class="form-group">
+            <label for="label">Label</label>
+            <input [(ngModel)]="mytasks.label" id="label" type="text" class="form-control">
+        </div>
+        <div class="form-check my-4 ">
+            <label class="form-check-label">
+            <input [(ngModel)]="mytasks.complated" type="checkbox" class="form-check-input" >
+            Complated
+          </label>
+        </div>
+        <div class="d-grid gap-2">
+            <!-- if edit form false show button  delete -->
+            <button *ngIf="!editForm" class="btn btn-success" (click)="handeleAdd()">
+            <i class="fa fa-send"></i>Send
+          </button>
+            <!-- if edit form true show button  update -->
+            <button *ngIf="editForm" class="btn btn-primary">
+            <i class="fa fa-refresh"></i>Update
+          </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <input class="form-control" [(ngModel)]="search" (keyup)="searchTask() " placeholder="Search.." />
+            <ul class="list-group" *ngFor="let task of resultTask">
+
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <button class="btn btn-warning" (click)="remplirChamps(task)">
+                      <i class="fa fa-pencil"></i>
+                    </button> {{task.label}}
+                    <span (click)="handeleStatusComplated(task)" [ngClass]="{
+                       'bg-info ': task.complated,
+                       'bg-danger': !task.complated
+                    }" class="badge bg-secondary rounded-pill">
+                        <i class="fa " [ngClass]="{
+                          'fa-thumbs-up' : task.complated,
+                          'fa-thumbs-down' : !task.complated
+                      }"></i>
+                    </span>
+
+                    <button class="btn btn-dark" (click)="handeleDelete(task.id)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>

@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "label": "Angular",
+      "complated": true
+    },
+    {
+      "id": 2,
+      "label": "React",
+      "complated": false
+    },
+    {
+      "label": "Vue",
+      "complated": true,
+      "id": 3
+    },
+    {
+      "label": "React Native",
+      "complated": false,
+      "id": 4
+    },
+    {
+      "label": "Django",
+      "complated": true,
+      "id": 5
+    }
+  ]
+}
